@@ -1,0 +1,667 @@
+## Retrieve all players, then write a program that will loop through each player and display their team name, mascot and stadium. How many queries have we done?
+
+
+
+players = Player.all
+
+players.each do |player|
+  team = player.team
+  puts "Player: #{player.name}, Team: #{team.name}, Mascot: #{team.mascot}, Stadium: #{team.stadium}"
+end
+-------------couldn't copy whole rows------
+| 478 | Royce O'Neale            | 34      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 479 | Ricky Rubio              | 34      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 480 | Thabo Sefolosha          | 34      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 481 | Ekpe Udoh                | 34      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 482 | Nate Wolters             | 34      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 483 | Bradley Beal             | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 484 | Tim Frazier              | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 485 | Marcin Gortat            | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 486 | Sheldon Mac              | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 487 | Ian Mahinmi              | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 488 | Chris McCullough         | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 489 | Jodie Meeks              | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 490 | Markieff Morris          | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 491 | Kelly Oubre Jr.          | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 492 | Otto Porter Jr.          | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 493 | Devin Robinson           | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 494 | Tomas Satoransky         | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 495 | Mike Scott               | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 496 | Jason Smith              | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 497 | John Wall                | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
+| 498 | Mike Young               | 35      | 2017-12-04 17:35:56 UTC | 2017-12-04 17:35:56 UTC |
++-----+--------------------------+---------+-------------------------+-------------------------+
+498 rows in set
+(END)
+
+
+1 query to retrieve all the players + 498 queries to get the team of each player = 499 total queries
+----------------------------------------------
+
+
+
+## Retrieve all players and write a program to loop through each player and their team name, mascot and stadium using .includes. How many queries have we done now?
+
+players = Player.includes(:team)
+players.each do |player|
+  puts "Player: #{player.name}, Team: #{player.team.name}, Mascot: #{player.team.mascot}, Stadium: #{player.team.stadium}"
+end
+
+
+only 2 queries
+
+----results---
+
+Player: Luke Babbitt, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Kent Bazemore, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Marco Belinelli, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: DeAndre' Bembry, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Nicolas Brussino, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Tyler Cavanaugh, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: John Collins, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Dewayne Dedmon, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Malcolm Delaney, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Tyler Dorsey, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Ersan Ilyasova, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Josh Magette, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Mike Muscala, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Miles Plumlee, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Taurean Prince, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Dennis Schroder, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Isaiah Taylor, Team: Atlanta Hawks, Mascot: Skyhawk,Stadium: Philips Arena
+Player: Kadeem Allen, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Aron Baynes, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Jabari Bird, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Jaylen Brown, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Gordon Hayward, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Al Horford, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Kyrie Irving, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Shane Larkin, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Marcus Morris, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Abdel Nader, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Semi Ojeleye, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Terry Rozier, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Marcus Smart, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Jayson Tatum, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Daniel Theis, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Guerschon Yabusele, Team: Boston Celtics, Mascot: Lucky the Leprechaun,Stadium: TD Garden
+Player: Quincy Acy, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Jarrett Allen, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Trevor Booker, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: DeMarre Carroll, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Allen Crabbe, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Spencer Dinwiddie, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Joe Harris, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Rondae Hollis-Jefferson, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Sean Kilpatrick, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Caris LeVert, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Jeremy Lin, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Timofey Mozgov, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Yakuba Ouattara, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: D'Angelo Russell, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Isaiah Whitehead, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Jacob Wiley, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Tyler Zeller, Team: Brooklyn Nets, Mascot: BrooklyKnight,Stadium: Barclays Center
+Player: Dwayne Bacon, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Nicolas Batum, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Michael Carter-Williams, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Treveon Graham, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Dwight Howard, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Frank Kaminsky, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Michael Kidd-Gilchrist, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Jeremy Lamb, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Mangok Mathiang, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Malik Monk, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Johnny O'Bryant III, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Marcus Paige, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Julyan Stone, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Kemba Walker, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Marvin Williams, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Cody Zeller, Team: Charlotte Hornets, Mascot: Hugo the Hornet,Stadium: Spectrum Center
+Player: Ryan Arcidiacono, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Antonio Blakeney, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Kris Dunn, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Kay Felder, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Cristiano Felicio, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Jerian Grant, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Justin Holiday, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Zach LaVine, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Robin Lopez, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Lauri Markkanen, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Nikola Mirotic, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: David Nwaba, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Cameron Payne, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Quincy Pondexter, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Bobby Portis, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Denzel Valentine, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Paul Zipser, Team: Chicago Bulls, Mascot: Benny the Bull,Stadium: United Center
+Player: Jose Calderon, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Jae Crowder, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Channing Frye, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Jeff Green, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: John Holland, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: LeBron James, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Kyle Korver, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Kevin Love, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Cedi Osman, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: London Perrantes, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Derrick Rose, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Iman Shumpert, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: JR Smith, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Isaiah Thomas, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Tristan Thompson, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Dwyane Wade, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: Ante Zizic, Team: Cleveland Cavaliers, Mascot: Moondog,Stadium: Quicken Loans Arena
+Player: J.J. Barea, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Harrison Barnes, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Antonius Cleveland, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Seth Curry, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Yogi Ferrell, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Dorian Finney-Smith, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Devin Harris, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Maximilian Kleber, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Wesley Matthews, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Josh McRoberts, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Salah Mejri, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Johnathan Motley, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Nerlens Noel, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Dirk Nowitzki, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Dwight Powell, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Dennis Smith Jr., Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Jeff Withey, Team: Dallas Mavericks, Mascot: Champ,Stadium: American Airlines Center
+Player: Darrell Arthur, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Will Barton, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Malik Beasley, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Wilson Chandler, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Torrey Craig, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Kenneth Faried, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Gary Harris, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Juan Hernangomez, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Richard Jefferson, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Nikola Jokic, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Tyler Lydon, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Trey Lyles, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Paul Millsap, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Monte Morris, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Emmanuel Mudiay, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Jamal Murray, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Mason Plumlee, Team: Denver Nuggets, Mascot: Rocky the Mountain Lion,Stadium: Pepsi Center
+Player: Avery Bradley, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Reggie Bullock, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Dwight Buycks, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Andre Drummond, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Henry Ellenson, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Langston Galloway, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Tobias Harris, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Reggie Jackson, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Stanley Johnson, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Luke Kennard, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Jon Leuer, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Boban Marjanovic, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Luis Montero, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Eric Moreland, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Ish Smith, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Anthony Tolliver, Team: Detroit Pistons, Mascot: Hooper,Stadium: The Palace of Auburn Hills
+Player: Jordan Bell, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Chris Boucher, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Omri Casspi, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Quinn Cook, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Stephen Curry, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Kevin Durant, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Draymond Green, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Andre Iguodala, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Damian Jones, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Shaun Livingston, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Kevon Looney, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Patrick McCaw, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: JaVale McGee, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Zaza Pachulia, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Klay Thompson, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: David West, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Nick Young, Team: Golden State Warriors, Mascot: Thunder,Stadium: Oracle Arena
+Player: Ryan Anderson, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Trevor Ariza, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Tarik Black, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Bobby Brown, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Clint Capela, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Eric Gordon, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: James Harden, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Nene Hilario, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Demetrius Jackson, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Luc Mbah a Moute, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Chinanu Onuaku, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Chris Paul, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Zhou Qi, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: PJ Tucker, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Briante Weber, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Troy Williams, Team: Houston Rockets, Mascot: Clutch,Stadium: Toyota Center
+Player: Ike Anigbogu, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Bojan Bogdanovic, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Darren Collison, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Al Jefferson, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Cory Joseph, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: T.J. Leaf, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Victor Oladipo, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Alex Poythress, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Glenn Robinson III, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Domantas Sabonis, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Lance Stephenson, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Edmond Sumner, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Myles Turner, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Damien Wilkins, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Joe Young, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Thaddeus Young, Team: Indiana Pacers, Mascot: Boomer the Panther,Stadium: Bankers Life Fieldhouse
+Player: Patrick Beverley, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Sam Dekker, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Jawun Evans, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Danilo Gallinari, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Blake Griffin, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Montrezl Harrell, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Brice Johnson, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Wesley Johnson, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: DeAndre Jordan, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Willie Reed, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Austin Rivers, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Milos Teodosic, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Sindarius Thornwell, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: C.J. Williams, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Lou Williams, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Jamil Wilson, Team: Los Angeles Clippers, Mascot: Chuck,Stadium: Staples Center
+Player: Lonzo Ball, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Vander Blue, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Andrew Bogut, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Corey Brewer, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Thomas Bryant, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Kentavious Caldwell-Pope, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Alex Caruso, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Jordan Clarkson, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Luol Deng, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Tyler Ennis, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Josh Hart, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Brandon Ingram, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Kyle Kuzma, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Brook Lopez, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Larry Nance Jr., Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Julius Randle, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Ivica Zubac, Team: Los Angeles Lakers, Mascot: Jack Nicholson,Stadium: Staples Center
+Player: Dillon Brooks, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Mario Chalmers, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Mike Conley, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Deyonta Davis, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: James Ennis III, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Tyreke Evans, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Marc Gasol, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: JaMychal Green, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Andrew Harrison, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Vince Hunter, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Jarell Martin, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Ben McLemore, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Chandler Parsons, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Ivan Rabb, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Wayne Selden, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Kobi Simmons, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Brandan Wright, Team: Memphis Grizzlies, Mascot: Griz,Stadium: FedExForum
+Player: Bam Adebayo, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Goran Dragic, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Wayne Ellington, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: AJ Hammons, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Udonis Haslem, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: James Johnson, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Tyler Johnson, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Rodney McGruder, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Jordan Mickey, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Kelly Olynyk, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Josh Richardson, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Dion Waiters, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Derrick Walton Jr., Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Okaro White, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Hassan Whiteside, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Matt Williams, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Justise Winslow, Team: Miami Heat, Mascot: Burnie,Stadium: American Airlines Arena
+Player: Giannis Antetokounmpo, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Eric Bledsoe, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Joel Bolomboy, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Malcolm Brogdon, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Sterling Brown, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Matthew Dellavedova, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: John Henson, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: DeAndre Liggins, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Thon Maker, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Khris Middleton, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Jabari Parker, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Gary Payton II, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Tony Snell, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Mirza Teletovic, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Jason Terry, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Rashad Vaughn, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: D.J. Wilson, Team: Milwaukee Bucks, Mascot: Bango,Stadium: BMO Harris Bradley Center
+Player: Cole Aldrich, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Nemanja Bjelica, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Aaron Brooks, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Anthony Brown, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Jimmy Butler, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Jamal Crawford, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Gorgui Dieng, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Marcus Georges-Hunt, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Taj Gibson, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Tyus Jones, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Shabazz Muhammad, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Justin Patton, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Jeff Teague, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Karl-Anthony Towns, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Andrew Wiggins, Team: Minnesota Timberwolves, Mascot: Crunch the Wolf,Stadium: Target Center
+Player: Alexis Ajinca, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Tony Allen, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Omer Asik, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Ian Clark, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Charles Cooke, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: DeMarcus Cousins, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Dante Cunningham, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Anthony Davis, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Cheick Diallo, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Solomon Hill, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Jrue Holiday, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Frank Jackson, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Jalen Jones, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Darius Miller, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: E'Twaun Moore, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Jameer Nelson, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Rajon Rondo, Team: New Orleans Pelicans, Mascot: Pierre the Pelican,Stadium: Smoothie King Center
+Player: Ron Baker, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Michael Beasley, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Damyean Dotson, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Tim Hardaway Jr., Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Willy Hernangomez, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Isaiah Hicks, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Jarrett Jack, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Enes Kanter, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Luke Kornet, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Courtney Lee, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Doug McDermott, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Joakim Noah, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Frank Ntilikina, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Kyle O'Quinn, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Kristaps Porzingis, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Ramon Sessions, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Lance Thomas, Team: New York Knicks, Mascot: Spike Lee,Stadium: Madison Square Garden
+Player: Alex Abrines, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Steven Adams, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Carmelo Anthony, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Nick Collison, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: PJ Dozier, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Raymond Felton, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Terrance Ferguson, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Paul George, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Jerami Grant, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Daniel Hamilton, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Josh Huestis, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Dakari Johnson, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Patrick Patterson, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Andre Roberson, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Kyle Singler, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Russell Westbrook, Team: Oklahoma City Thunder, Mascot: Rumble the Bison,Stadium: Chesapeake Energy Arena
+Player: Arron Afflalo, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Jamel Artis, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: D.J. Augustin, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Khem Birch, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Bismack Biyombo, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Evan Fournier, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Aaron Gordon, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Mario Hezonja, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Jonathan Isaac, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Wesley Iwundu, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Shelvin Mack, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Adreian Payne, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Elfrid Payton, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Terrence Ross, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Jonathon Simmons, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Marreese Speights, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Nikola Vucevic, Team: Orlando Magic, Mascot: Stuff the Magic Dragon,Stadium: Amway Center
+Player: Justin Anderson, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Jerryd Bayless, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Robert Covington, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Joel Embiid, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Markelle Fultz, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Richaun Holmes, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Amir Johnson, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Furkan Korkmaz, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Timothe Luwawu-Cabarrot, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: James Michael McAdoo, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: T.J. McConnell, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Jahlil Okafor, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Jacob Pullen, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: JJ Redick, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Dario Saric, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Ben Simmons, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Nik Stauskas, Team: Philadelphia 76ers, Mascot: Franklin the Dog,Stadium: Wells Fargo Center Philadelphia
+Player: Dragan Bender, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Devin Booker, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Tyson Chandler, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Marquese Chriss, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Troy Daniels, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Jared Dudley, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Josh Jackson, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Mike James, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Derrick Jones Jr., Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Brandon Knight, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Alex Len, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Greg Monroe, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Alec Peters, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Davon Reed, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Tyler Ulis, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: TJ Warren, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Alan Williams, Team: Phoenix Suns, Mascot: The Suns Gorilla,Stadium: Talking Stick Resort Arena
+Player: Al-Farouq Aminu, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Wade Baldwin IV, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Zach Collins, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Pat Connaughton, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Ed Davis, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Maurice Harkless, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Jake Layman, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Meyers Leonard, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Damian Lillard, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: CJ McCollum, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Shabazz Napier, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Jusuf Nurkic, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Caleb Swanigan, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Evan Turner, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Noah Vonleh, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: CJ Wilcox, Team: Portland Trail Blazers, Mascot: Blaze the Trail Cat,Stadium: Moda Center
+Player: Bogdan Bogdanovic, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Vince Carter, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Willie Cauley-Stein, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Jack Cooley, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: De'Aaron Fox, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Harry Giles, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Buddy Hield, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: George Hill, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Justin Jackson, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Kosta Koufos, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Skal Labissiere, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Frank Mason III, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Georgios Papagiannis, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Zach Randolph, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Malachi Richardson, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: JaKarr Sampson, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: Garrett Temple, Team: Sacramento Kings, Mascot: Slamson the Lion,Stadium: Golden 1 Center
+Player: LaMarcus Aldridge, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Kyle Anderson, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Davis Bertans, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Matt Costello, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Bryn Forbes, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Pau Gasol, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Rudy Gay, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Manu Ginobili, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Danny Green, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Darrun Hilliard, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Joffrey Lauvergne, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Kawhi Leonard, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Patty Mills, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Dejounte Murray, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Tony Parker, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Brandon Paul, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: Derrick White, Team: San Antonio Spurs, Mascot: The Coyote,Stadium: AT&T Center
+Player: OG Anunoby, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Lorenzo Brown, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Bruno Caboclo, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: DeMar DeRozan, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Serge Ibaka, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Kyle Lowry, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Alfonzo McKinnie, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: CJ Miles, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Malcolm Miller, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Lucas Nogueira, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Jakob Poeltl, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Norman Powell, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Pascal Siakam, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Jonas Valanciunas, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Fred VanVleet, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Delon Wright, Team: Toronto Raptors, Mascot: Raptor,Stadium: Air Canada Centre
+Player: Tony Bradley, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Alec Burks, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Dante Exum, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Derrick Favors, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Rudy Gobert, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Eric Griffin, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Rodney Hood, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Joe Ingles, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Jonas Jerebko, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Joe Johnson, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Donovan Mitchell, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Raul Neto, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Royce O'Neale, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Ricky Rubio, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Thabo Sefolosha, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Ekpe Udoh, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Nate Wolters, Team: Utah Jazz, Mascot: Jazz Bear,Stadium: Vivint Smart Home Arena
+Player: Bradley Beal, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Tim Frazier, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Marcin Gortat, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Sheldon Mac, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Ian Mahinmi, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Chris McCullough, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Jodie Meeks, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Markieff Morris, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Kelly Oubre Jr., Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Otto Porter Jr., Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Devin Robinson, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Tomas Satoransky, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Mike Scott, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Jason Smith, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: John Wall, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+Player: Mike Young, Team: Washington Wizards, Mascot: G. Wiz,Stadium: Verizon Center
+----------------------
+
+
+
+## Retrieve all players from the 'Chicago Bulls' by using .includes
+
+
+ Player.includes(:team).where("teams.name = 'Chicago Bulls' ").references(:team)
+  SQL (2.1ms)  SELECT "players"."id" AS t0_r0, "players"."name" AS t0_r1, "players"."team_id" AS t0_r2, "players"."created_at" AS t0_r3, "players"."updated_at" AS t0_r4, "teams"."id" AS t1_r0, "teams"."name" AS t1_r1, "teams"."mascot" AS t1_r2, "teams"."stadium" AS t1_r3, "teams"."created_at" AS t1_r4, "teams"."updated_at" AS t1_r5 FROM "players" LEFT OUTER JOIN "teams" ON "teams"."id" = "players"."team_id" WHERE (teams.name = 'Chicago Bulls' )
++----+-------------------+---------+-------------------------+-------------------------+
+| id | name              | team_id | created_at              | updated_at              |
++----+-------------------+---------+-------------------------+-------------------------+
+| 67 | Ryan Arcidiacono  | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 68 | Antonio Blakeney  | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 69 | Kris Dunn         | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 70 | Kay Felder        | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 71 | Cristiano Felicio | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 72 | Jerian Grant      | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 73 | Justin Holiday    | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 74 | Zach LaVine       | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 75 | Robin Lopez       | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 76 | Lauri Markkanen   | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 77 | Nikola Mirotic    | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 78 | David Nwaba       | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 79 | Cameron Payne     | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 80 | Quincy Pondexter  | 10      | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 81 | Bobby Portis      | 10      | 2017-12-04 17:35:52 UTC | 2017-12-04 17:35:52 UTC |
+| 82 | Denzel Valentine  | 10      | 2017-12-04 17:35:52 UTC | 2017-12-04 17:35:52 UTC |
+| 83 | Paul Zipser       | 10      | 2017-12-04 17:35:52 UTC | 2017-12-04 17:35:52 UTC |
++----+-------------------+---------+-------------------------+-------------------------+
+17 rows in set
+-----------------
+
+## Retrieve all players along with the team name that play at the 'Staples Center'
+
+
+
+Player.joins(:team).select('players.*', 'teams.name as franchise', 'teams.stadium as stadium').where("teams.stadium = 'Staples Center'")
+
++-----+-----------------------+---------+-----------------------+-----------------------+----------------------+----------------+
+| id  | name                  | team_id | created_at            | updated_at            | franchise            | stadium        |
++-----+-----------------------+---------+-----------------------+-----------------------+----------------------+----------------+
+| 200 | Patrick Beverley      | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 201 | Sam Dekker            | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 202 | Jawun Evans           | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 203 | Danilo Gallinari      | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 204 | Blake Griffin         | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 205 | Montrezl Harrell      | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 206 | Brice Johnson         | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 207 | Wesley Johnson        | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 208 | DeAndre Jordan        | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 209 | Willie Reed           | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 210 | Austin Rivers         | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 211 | Milos Teodosic        | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 212 | Sindarius Thornwell   | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 213 | C.J. Williams         | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 214 | Lou Williams          | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 215 | Jamil Wilson          | 18      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Clippers | Staples Center |
+| 216 | Lonzo Ball            | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 217 | Vander Blue           | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 218 | Andrew Bogut          | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 219 | Corey Brewer          | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 220 | Thomas Bryant         | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 221 | Kentavious Caldwel... | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 222 | Alex Caruso           | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 223 | Jordan Clarkson       | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 224 | Luol Deng             | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 225 | Tyler Ennis           | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 226 | Josh Hart             | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 227 | Brandon Ingram        | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 228 | Kyle Kuzma            | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 229 | Brook Lopez           | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 230 | Larry Nance Jr.       | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 231 | Julius Randle         | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
+| 232 | Ivica Zubac           | 19      | 2017-12-04 17:35:5... | 2017-12-04 17:35:5... | Los Angeles Lakers   | Staples Center |
++-----+-----------------------+---------+-----------------------+-----------------------+----------------------+----------------+
+33 rows in set
+
+
+
+
+--------------------
+
+# # Retrieve all teams that have any player that start their name with the letter 'Z' by using .includes and .joins
+
+
+Team.includes(:players).where("players.name LIKE 'Z%'").references(:players)
+Team.joins(:players).where("players.name LIKE 'Z%'")
+
+
++----+------------------------+---------------------+-----------------+-------------------------+-------------------------+
+| id | name                   | mascot              | stadium         | created_at              | updated_at              |
++----+------------------------+---------------------+-----------------+-------------------------+-------------------------+
+| 10 | Chicago Bulls          | Benny the Bull      | United Center   | 2017-12-04 17:35:51 UTC | 2017-12-04 17:35:51 UTC |
+| 15 | Golden State Warriors  | Thunder             | Oracle Arena    | 2017-12-04 17:35:52 UTC | 2017-12-04 17:35:52 UTC |
+| 16 | Houston Rockets        | Clutch              | Toyota Center   | 2017-12-04 17:35:52 UTC | 2017-12-04 17:35:52 UTC |
+| 30 | Portland Trail Blazers | Blaze the Trail Cat | Moda Center     | 2017-12-04 17:35:55 UTC | 2017-12-04 17:35:55 UTC |
+| 31 | Sacramento Kings       | Slamson the Lion    | Golden 1 Center | 2017-12-04 17:35:55 UTC | 2017-12-04 17:35:55 UTC |
++----+------------------------+---------------------+-----------------+-------------------------+-------------------------+
+5 rows in set
+------------
+
+Team.joins(:players).where("players.name LIKE 'Z%'").select("teams.name as team_name","players.name as player_name", "teams.*", "players.*")
+  Team Load (1.8ms)  SELECT teams.name as team_name, players.name as player_name, teams.*, players.* FROM "teams" INNER JOIN "players" ON "players"."team_id" = "teams"."id" WHERE (players.name LIKE 'Z%')
++-----+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------+
+| id  | name          | mascot        | stadium       | created_at    | updated_at    | team_name     | player_name   | team_id |
++-----+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------+
+| 74  | Zach LaVine   | Benny the ... | United Center | 2017-12-04... | 2017-12-04... | Chicago Bulls | Zach LaVine   | 10      |
+| 164 | Zaza Pachulia | Thunder       | Oracle Arena  | 2017-12-04... | 2017-12-04... | Golden Sta... | Zaza Pachulia | 15      |
+| 180 | Zhou Qi       | Clutch        | Toyota Center | 2017-12-04... | 2017-12-04... | Houston Ro... | Zhou Qi       | 16      |
+| 402 | Zach Collins  | Blaze the ... | Moda Center   | 2017-12-04... | 2017-12-04... | Portland T... | Zach Collins  | 30      |
+| 429 | Zach Randolph | Slamson th... | Golden 1 C... | 2017-12-04... | 2017-12-04... | Sacramento... | Zach Randolph | 31      |
++-----+---------------+---------------+---------------+---------------+---------------+---------------+---------------+---------+
+5 rows in set
+----------------
